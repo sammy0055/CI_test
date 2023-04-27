@@ -4,9 +4,9 @@
   "main": "app.js",
   "license": "MIT",
   "scripts": {
-    "test": "npx tsc",
+    "test": "jest",
     "start": "ts-node-dev src/app.ts",
-    "build": "jest"
+    "compile": "npx tsc"
   },
   "dependencies": {
     "aws-serverless-express": "^3.4.0",
