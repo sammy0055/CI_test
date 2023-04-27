@@ -37,7 +37,6 @@ jobs:
       - run: npm ci
       - run: npm test
         # sam build
-      - run: npm build
       - run: sam build
       # sam deploy
       - run: sam deploy --no-fail-on-empty-changeset --resolve-s3 --stack-name stack-name-${{ env.BRANCH_NAME }} --capabilities CAPABILITY_IAM --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }}
