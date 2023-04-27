@@ -5,16 +5,38 @@ name: Node CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+
+env:
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+  AWS_REGION: eu-west-1
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   test_psh_request:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: 'npm'
-    - run: npm ci
-    - run: npm test
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "npm"
+        # Configure AWS SAM CLI and AWS Credentials
+      - uses: aws-actions/setup-sam@v2
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::104730407992:role/github_action_ci_test
+          role-session-name: aws-sam-template-node-ts-github-actions
+          aws-region: ${{ env.AWS_REGION }}
+        # sam build
+      - run: sam build
+      # run unit test
+      - run: npm ci
+      - run: npm test
+      # sam deploy
+      - run: sam deploy --no-fail-on-empty-changeset --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }}

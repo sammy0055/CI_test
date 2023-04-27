@@ -12,7 +12,7 @@ Resources:
   WelcomeFn:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: disk/handler.lambdaHandler
+      Handler: dist/handler.lambdaHandler
       Runtime: nodejs16.x
       Architectures:
         - x86_64
