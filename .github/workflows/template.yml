@@ -35,7 +35,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       # run unit test
       - run: npm ci
-      - run: npm compile
+      - run: npx tsc
       - run: npm test
         # sam build
       - run: sam build
