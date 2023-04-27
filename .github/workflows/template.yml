@@ -10,7 +10,6 @@ on:
 env:
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
   AWS_REGION: eu-west-1
-  COMPATABILITY: ["CAPABILITY_IAM"]
 
 permissions:
   id-token: write
@@ -40,4 +39,4 @@ jobs:
       - run: npm ci
       - run: npm test
       # sam deploy
-      - run: sam deploy --no-fail-on-empty-changeset --Capabilities capabilities=${{ env.COMPATABILITY }} --resolve-s3 --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }}
+      - run: sam deploy --no-fail-on-empty-changeset --resolve-s3 --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }}
