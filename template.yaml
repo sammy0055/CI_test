@@ -9,7 +9,7 @@ Globals:
     MemorySize: 128
 
 Resources:
-  WelcomeFn:
+  WelcomeFnnew:
     Type: AWS::Serverless::Function
     Properties:
       Handler: dist/handler.lambdaHandler
