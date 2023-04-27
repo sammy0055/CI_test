@@ -39,4 +39,4 @@ jobs:
       - run: npm ci
       - run: npm test
       # sam deploy
-      - run: sam deploy --no-fail-on-empty-changeset --resolve-s3 --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }} 
+      - run: sam deploy --no-fail-on-empty-changeset --resolve-s3 --stack-name --config-env ${{ env.BRANCH_NAME }} --parameter-overrides Environment=${{ env.BRANCH_NAME }} 
