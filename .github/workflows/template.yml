@@ -39,4 +39,4 @@ jobs:
       - run: npm ci
       - run: npm test
       # sam deploy
-      - run: sam deploy --no-fail-on-empty-changeset --resolve-s3 --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --capabilities --parameter-overrides Environment=[CAPABILITY_AUTO_EXPAND, CAPABILITY_NAMED_IAM, CAPABILITY_IAM]
+      - run: sam deploy --no-fail-on-empty-changeset --resolve-s3 --stack-name stack-name-${{ env.BRANCH_NAME }} --config-env ${{ env.BRANCH_NAME }} --capabilities Capabilities=[CAPABILITY_AUTO_EXPAND, CAPABILITY_NAMED_IAM, CAPABILITY_IAM] --parameter-overrides Environment=${{ env.BRANCH_NAME }}
