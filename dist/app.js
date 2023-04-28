@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 exports.app = (0, express_1.default)();
 const port = 5000;
 exports.app.get("/", (req, res) => {
-    res.send("Express + TypeScript Server new github actions");
+    res.send("Express + TypeScript Server new github actions me");
 });
 // app.listen(port, () => {
 //   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
